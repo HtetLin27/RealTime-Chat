@@ -1,0 +1,67 @@
+.chartList{
+    flex: 1;
+    overflow: scroll;
+    overflow-x: hidden;
+    .search{
+        display: flex;
+        align-items: center;
+        gap:20px;
+        padding: 20px;
+
+        .searchBar{
+            flex: 1;
+            background-color: rgba(17,25,40,0.5);
+            display: flex;
+            align-items: center;
+            gap:20px;
+            border-radius: 10px;
+            padding:10px;
+
+            input{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                color: #fff;
+                flex: 1;
+            }
+            
+            img{
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        .add{
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            background-color: rgba(17,25,40,0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+
+    .item{
+        display: flex;
+        gap:20px;
+        align-items: center;
+        padding: 20px;
+        cursor: pointer;
+        border-bottom: 1px solid #dddd ;
+    }
+}
+
+/* Custom scrollbar for Chrome, Edge, and Safari */
+.chartList::-webkit-scrollbar {
+    width: 8px; /* width of the entire scrollbar */
+}
+
+.chartList::-webkit-scrollbar-track {
+    background: transparent; /* color of the tracking area */
+}
+
+.chartList::-webkit-scrollbar-thumb {
+    background-color: #64748B; /* color of the scroll thumb */
+    border-radius: 10px; /* roundness of the scroll thumb */
+    border: 2px solid #E5E7EB; /* creates padding around scroll thumb */
+}
