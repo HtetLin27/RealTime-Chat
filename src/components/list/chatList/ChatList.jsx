@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './chatList.css'
 import AddUser from './addUser/AddUser'
 import { useUserStore } from '../../../lib/userStore';
+import {useChatStore} from '../../../lib/chatStore'
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 
@@ -13,6 +14,7 @@ const ChatList = () => {
   const [chats,setChats] = useState([])
 
   const {currentUser} = useUserStore()
+  const {chatId,changeChat} = useChatStore()
 
   useEffect(()=>{
     const unSub = onSnapshot(doc(db, "userchats", currentUser.id), async (res) => {
@@ -39,6 +41,10 @@ const ChatList = () => {
 
   },[currentUser.id])
 
+  const handlelSelect = async(chat)=>{
+    changeChat(chat.chatId,chat.user)
+  }
+
 
   return (
     <div className='chartList'>
@@ -50,7 +56,10 @@ const ChatList = () => {
         <img onClick={()=>setAddMode(prev => !prev)} src={addMode ? './minus.png' : './plus.png'} alt="" className='add' />
       </div>
       {chats.map((chat) => (
-        <div className="item" key={chat.chatId}>
+        <div className="item" key={chat.chatId} onClick={()=>handlelSelect(chat)}
+        style={{
+          backgroundColor:chat?.isSeen ? "transparent" : "#5183fe"
+        }}>
           <img src={chat.user.avatar || "./avatar.png"} alt="" />
           <div className="texts">
             <span>{chat.user.username}</span>
